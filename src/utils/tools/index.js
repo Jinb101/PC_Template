@@ -4,7 +4,7 @@
  * @param {string|null} parameter 参数名（可选）。如果为 null，则返回包含所有参数的对象
  * @returns {string|null|Object} 如果指定了参数名，则返回该参数的值；如果未指定参数名但存在参数，则返回包含所有参数的对象；如果不存在参数，则返回 null
  */
-export function getUrlParams(parameter = null) {
+export function getUrlParameter(parameter = null) {
     // 清除上一次的本地存储参数
     localStorage.removeItem('urlParameters'); // 清除存储的 URL 参数
 

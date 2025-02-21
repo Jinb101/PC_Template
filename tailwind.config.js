@@ -1,4 +1,5 @@
 import remToPx from 'tailwindcss-rem-to-px';
+import type { Config } from 'tailwindcss'
 
 export default {
     content: [
@@ -11,6 +12,6 @@ export default {
         },
     },
     plugins: [
-        remToPx(),
+        require('daisyui'),
     ],
-}
+} satisfies Config

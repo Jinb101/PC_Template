@@ -31,7 +31,6 @@
     "postcss-pxtorem": "^6.0.0",
     "postcss-value-parser": "^4.2.0",
     "qs": "^6.11.2",
-    "tailwindcss-rem-to-px": "^0.1.1",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },
@@ -43,6 +42,7 @@
     "@vitejs/plugin-vue": "^4.5.0",
     "@vue/cli-plugin-router": "^5.0.8",
     "autoprefixer": "^10.4.16",
+    "daisyui": "^5.0.0-beta.8",
     "eslint": "^8.0.0",
     "eslint-plugin-vue": "^9.18.1",
     "less": "^3.10.3",

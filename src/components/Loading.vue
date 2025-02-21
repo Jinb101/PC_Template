@@ -1,7 +1,7 @@
 <template>
     <div v-if="isLoading"
-         class="flex justify-center items-center fixed left-[50%] top-[50%]">
-                     <var-loading type="wave"  :color="'#84d764'"  />
+         class="flex justify-center items-center fixed left-[50%] top-[50%] h-[50px] w-[50px]">
+               <span class="loading loading-spinner text-primary"></span>
     </div>
 </template>
 

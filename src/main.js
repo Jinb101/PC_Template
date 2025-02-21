@@ -7,37 +7,28 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import router from "./router/routes";
 
-
-
 // 状态管理 Pinia 相关导入
-import { createPinia } from "pinia";
+import { createPinia, storeToRefs } from "pinia";
 import { useStore } from "@/store/index.js";
-import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
-
+import persist from 'pinia-plugin-persistedstate'
+// 个人配置 实例对象
+import { config } from "@/utils/config/user.config.js";
 // 工具库和配置相关导入
 import scales from "../win.scales"; // 视口缩放配置
 import http from "@/api/api.js"; // Axios 实例
-import { userConfig } from "@/utils/config/user.config.js"; // 用户配置
-import loading from '@/utils/tools/loading.js'; // 加载工具
-import * as tools from "@/utils/tools/index.js"; // 公共工具方法
+// 公共方法
+import * as tools from "@/utils/tools/index.js";
+import loading from '@/utils/tools/loading.js';
 import lodash from 'lodash'; // Lodash 库
 
 // 创建 Vue 应用实例
+// app 实例
 const app = createApp(App);
 
-// 创建 Pinia 实例并使用插件
-const pinia = createPinia();
-pinia.use(piniaPluginPersistedstate);
-app.use(pinia);
+//  Pinia 实例
+app.use(createPinia().use(persist));
 
-// 获取 Pinia store 实例
-const mainStore = useStore();
 
-// 全局提供对象
-const $loading = {
-    open: loading.open,
-    close: loading.close,
-};
 
 // 视口设置相关函数
 const setViewport = (deviceWidth) => {
@@ -64,16 +55,25 @@ if (isMobile()) {
 }
 
 // 全局提供依赖
+const mainStore = useStore();
+const PiniaStor = storeToRefs(mainStore);
+
+const $loading = {
+    open: loading.open,
+    close: loading.close,
+}
+// app.provide("xxx", xxx);
+// app.config.globalProperties.xxx = xxx
 app.provide("http", http);
-app.provide("stor", mainStore);
+app.provide("store", PiniaStor);
 app.provide("$loading", $loading);
-app.provide("config", userConfig);
+app.provide("isLoading", loading.isLoading);
+app.provide("config", config);
 app.provide("tools", tools);
-app.provide("lodash", lodash);
+
 
 // 使用路由和 UI 库
 app.use(router);
-app.use(Varlet);
 
 // 挂载 Vue 应用
 app.mount("#app");

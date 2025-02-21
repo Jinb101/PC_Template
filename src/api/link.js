@@ -1,8 +1,8 @@
 const TouristApi = {};
 
 const MainApi = {
-    // 班级公告分页查询
-    classPage: '/zhxyteacher/v4/notice/page'
+    // 食堂首页
+    homePage: '/zhxyhardware/v4/dining-hall/init'
 };
 
 export { TouristApi, MainApi };
